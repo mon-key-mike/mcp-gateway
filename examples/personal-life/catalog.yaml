@@ -1,0 +1,14 @@
+registry:
+  personal-life:
+    title: Personal Life Manager
+    description: >
+      Manage your personal life from your AI assistant. Includes tools for
+      tasks/todos, notes, a daily journal, a shopping list, and reminders.
+      All data is stored locally in a JSON file on your machine.
+    type: server
+    command:
+      - personal-life-mcp
+    env:
+      PERSONAL_MCP_DATA:
+        description: Path to the JSON data file (default: ~/.personal-mcp/data.json)
+        required: false

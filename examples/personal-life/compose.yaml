@@ -1,0 +1,26 @@
+services:
+  gateway:
+    image: docker/mcp-gateway
+    ports:
+      - "8811:8811"
+    command:
+      - --servers=personal-life
+      - --catalog=/mcp/catalog.yaml
+      - --transport=sse
+      - --port=8811
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./catalog.yaml:/mcp/catalog.yaml
+      - personal-mcp-data:/data
+
+  personal-life-mcp:
+    build:
+      context: ../..
+      dockerfile: examples/personal-life/Dockerfile
+    volumes:
+      - personal-mcp-data:/data
+    environment:
+      PERSONAL_MCP_DATA: /data/personal-mcp.json
+
+volumes:
+  personal-mcp-data:
