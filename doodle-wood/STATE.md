@@ -48,8 +48,19 @@ Ranked. The first two are launch-blocking.
    `write_legal_policies` scope. They contain deliberate placeholders (contact email,
    business address) that are customer-facing and must be filled first. The workshop
    liability and privacy sections need a lawyer before taking money.
-6. No shipping rates configured and no payment provider verified. These block real
-   checkout independently of everything above.
+6. **Shipping rates ARE configured** (corrected 2026-08-28 — an earlier note here
+   wrongly said they were not). Flat rates on a Domestic zone: Economy $6.69 (free
+   ≥ $39), Standard $8.00 (free ≥ $70), Express $15.00. These are Shopify defaults
+   and the free-shipping thresholds are mispriced against this catalog — see
+   `docs/FUNNEL.md`.
+7. **Payment provider not confirmed.** `supportedDigitalWallets` is empty, which on a
+   US store strongly suggests no provider is activated. Not confirmable via API —
+   check Settings → Payments. Until this is live, every other funnel fix converts
+   to $0.
+8. **The three highest-value revenue lines have no product in the store.** Notion
+   records $30 workshop seats as the highest-throughput item, deposit-gated
+   commissions, and B2B QR plaques from $72 as the highest-value repeat item.
+   None exists as a purchasable product. See `docs/FUNNEL.md`.
 7. Notion `40 · Storefront` plans commerce on `doodle-wood.shop`; the request here is
    `shop.doodle-wood.com`. Reconciled in favour of the subdomain — consistent with the
    same doc's own recommendation to build on subdomains. Noted so it isn't re-litigated.
