@@ -1,0 +1,43 @@
+{
+  "_comment": "Doodle Wood storefront collections. Mapped to the real catalog, not the aspirational list in Notion 40 - Storefront.",
+  "_shop": "000yqx-de.myshopify.com",
+  "_snapshot_taken": "2026-08-28T01:33:00Z",
+  "collections": [
+    {
+      "shopify_gid": "gid://shopify/Collection/337792368803",
+      "handle": "hand-burned-wood-slices",
+      "title": "Hand-Burned Wood Slices",
+      "sort_order": "PRICE_ASC",
+      "description": "The hero of the studio. Sketchbook line work burned permanently into basswood - grain lines become rivers, knots become eyes. Hand-burned one at a time, so no two are alike.",
+      "products": ["campfire-monkey-wood-slice", "moon-hiker-wood-slice"]
+    },
+    {
+      "shopify_gid": "gid://shopify/Collection/337792401571",
+      "handle": "pendants-wearables",
+      "title": "Pendants & Wearables",
+      "sort_order": "PRICE_ASC",
+      "description": "Doodles you can wear. Wood-slice pendants and embroidered badges built from the same characters that escaped the notebook - cord and iron-on backing included.",
+      "products": ["trail-monkey-patch", "banana-bandit-pendant"]
+    },
+    {
+      "shopify_gid": "gid://shopify/Collection/337792434339",
+      "handle": "signs-wall-art",
+      "title": "Signs & Wall Art",
+      "sort_order": "PRICE_ASC",
+      "description": "Hand-burned lettering on solid pine. Welcome signs, nameplates and wall pieces made to hang on a cabin door and stay there.",
+      "products": ["happy-stump-welcome-sign"]
+    },
+    {
+      "shopify_gid": "gid://shopify/Collection/337792467107",
+      "handle": "stickers-camp-goods",
+      "title": "Stickers & Camp Goods",
+      "sort_order": "PRICE_ASC",
+      "description": "The small stuff. Weatherproof vinyl doodles and campfire-ready mugs - the easiest way to get a character out of the sketchbook and onto your gear.",
+      "products": ["mushroom-buddy-sticker", "cosmic-acorn-sticker", "doodle-wood-camp-mug"]
+    }
+  ],
+  "_planned_but_not_built": {
+    "_reason": "Named in Notion 40 - Storefront as featured collections, but no products exist for them yet.",
+    "collections": ["QR Signs & Nameplates", "Festival Totems", "Oracle Cards & Adventure Maps"]
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "_comment": "Canonical Doodle Wood product catalog. Version-controlled source of truth.",
+  "_shop": "000yqx-de.myshopify.com",
+  "_snapshot_taken": "2026-08-28T01:33:00Z",
+  "_verified_against_live_store": true,
+  "currency": "USD",
+  "vendor": "Doodle Wood",
+  "products": [
+    {
+      "shopify_gid": "gid://shopify/Product/9233293213859",
+      "handle": "campfire-monkey-wood-slice",
+      "title": "Campfire Monkey Wood Slice",
+      "product_type": "Wood Slice",
+      "status": "ACTIVE",
+      "tags": ["doodle-wood", "monkey", "pyrography"],
+      "collection": "hand-burned-wood-slices",
+      "has_images": false,
+      "variants": [
+        { "sku": "DW-WS-CM4", "title": "4 in / Basswood", "price": "28.00", "inventory": 25 },
+        { "sku": "DW-WS-CM6", "title": "6 in / Basswood", "price": "38.00", "inventory": 15 }
+      ]
+    },
+    {
+      "shopify_gid": "gid://shopify/Product/9233294065827",
+      "handle": "moon-hiker-wood-slice",
+      "title": "Moon Hiker Wood Slice",
+      "product_type": "Wood Slice",
+      "status": "ACTIVE",
+      "tags": ["adventure", "doodle-wood", "pyrography"],
+      "collection": "hand-burned-wood-slices",
+      "has_images": false,
+      "variants": [
+        { "sku": "DW-WS-MH6", "title": "6 in / Basswood", "price": "38.00", "inventory": 18 }
+      ]
+    },
+    {
+      "shopify_gid": "gid://shopify/Product/9233293377699",
+      "handle": "banana-bandit-pendant",
+      "title": "Banana Bandit Pendant",
+      "product_type": "Pendant",
+      "status": "ACTIVE",
+      "tags": ["doodle-wood", "monkey", "wearable"],
+      "collection": "pendants-wearables",
+      "has_images": false,
+      "variants": [
+        { "sku": "DW-PD-BBS", "title": "Small / Natural", "price": "14.00", "inventory": 40 },
+        { "sku": "DW-PD-BBL", "title": "Large / Dark Burn", "price": "18.00", "inventory": 30 }
+      ]
+    },
+    {
+      "shopify_gid": "gid://shopify/Product/9233293672611",
+      "handle": "trail-monkey-patch",
+      "title": "Trail Monkey Patch",
+      "product_type": "Patch",
+      "status": "ACTIVE",
+      "tags": ["adventure", "doodle-wood", "monkey"],
+      "collection": "pendants-wearables",
+      "has_images": false,
+      "variants": [
+        { "sku": "DW-PT-TM3", "title": "3 in / Iron-on", "price": "9.00", "inventory": 75 }
+      ]
+    },
+    {
+      "shopify_gid": "gid://shopify/Product/9233293967523",
+      "handle": "happy-stump-welcome-sign",
+      "title": "Happy Stump Welcome Sign",
+      "product_type": "Sign",
+      "status": "ACTIVE",
+      "tags": ["doodle-wood", "home", "sign"],
+      "collection": "signs-wall-art",
+      "has_images": false,
+      "variants": [
+        { "sku": "DW-SG-HS12", "title": "12 in / Pine", "price": "45.00", "inventory": 12 }
+      ]
+    },
+    {
+      "shopify_gid": "gid://shopify/Product/9233293508771",
+      "handle": "mushroom-buddy-sticker",
+      "title": "Mushroom Buddy Sticker",
+      "product_type": "Sticker",
+      "status": "ACTIVE",
+      "tags": ["doodle-wood", "mushroom", "sticker"],
+      "collection": "stickers-camp-goods",
+      "has_images": false,
+      "variants": [
+        { "sku": "DW-ST-MB3", "title": "3 in / Matte", "price": "4.00", "inventory": 200 }
+      ]
+    },
+    {
+      "shopify_gid": "gid://shopify/Product/9233294262435",
+      "handle": "cosmic-acorn-sticker",
+      "title": "Cosmic Acorn Sticker",
+      "product_type": "Sticker",
+      "status": "ACTIVE",
+      "tags": ["acorn", "doodle-wood", "sticker"],
+      "collection": "stickers-camp-goods",
+      "has_images": false,
+      "variants": [
+        { "sku": "DW-ST-CA3", "title": "3 in / Holographic", "price": "5.00", "inventory": 150 }
+      ]
+    },
+    {
+      "shopify_gid": "gid://shopify/Product/9233294164131",
+      "handle": "doodle-wood-camp-mug",
+      "title": "Doodle Wood Camp Mug",
+      "product_type": "Mug",
+      "status": "ACTIVE",
+      "tags": ["camp", "doodle-wood", "mug"],
+      "collection": "stickers-camp-goods",
+      "has_images": false,
+      "variants": [
+        { "sku": "DW-MG-CF12", "title": "12 oz / Forest Green", "price": "22.00", "inventory": 60 }
+      ]
+    }
+  ]
+}

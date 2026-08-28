@@ -1,0 +1,6 @@
+# Never commit Shopify credentials
+.env
+.env.*
+*token*
+*.secret
+!catalog/*.json
