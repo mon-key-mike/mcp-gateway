@@ -1,0 +1,172 @@
+{
+  "id": "dw-banana-bandit-pendant",
+  "sku": "DW-PD",
+  "title": "Banana Bandit Pendant",
+  "handle": "banana-bandit-pendant",
+  "status": "active",
+  "version": "v1.0",
+  "classification": {
+    "product_type": "Pendant",
+    "collection": "pendants-wearables",
+    "secondary_collections": [],
+    "tags": [
+      "doodle-wood",
+      "monkey",
+      "wearable"
+    ],
+    "character": "Banana Bandit",
+    "motif": [
+      "monkey"
+    ],
+    "gift_occasion": []
+  },
+  "narrative": {
+    "one_liner": null,
+    "description_short": null,
+    "description_long": null,
+    "origin_story": null,
+    "grain_note": null,
+    "voice_warnings": [
+      "never describe as food-safe",
+      "avoid 'rustic' - Notion brand doc explicitly rejects it"
+    ]
+  },
+  "physical": {
+    "wood_species": null,
+    "dimensions_mm": null,
+    "weight_g": null,
+    "finish": null,
+    "burn_depth": null,
+    "hardware": null,
+    "one_of_one": null,
+    "care_instructions": null,
+    "safety_notes": null
+  },
+  "production": {
+    "make_mode": null,
+    "burn_minutes": null,
+    "blank_source": null,
+    "blank_cost": null,
+    "consumables_cost": null,
+    "cogs": null,
+    "batch_size": null,
+    "tooling": [],
+    "difficulty": null,
+    "workshop_suitable": null
+  },
+  "commerce": {
+    "currency": "USD",
+    "price": 14.0,
+    "compare_at_price": null,
+    "booth_price": null,
+    "wholesale_price": null,
+    "wholesale_moq": null,
+    "margin_pct": null,
+    "tax_code": null,
+    "inventory_tracked": true,
+    "inventory_on_hand": 70
+  },
+  "variants": [
+    {
+      "sku": "DW-PD-BBS",
+      "title": "Small / Natural",
+      "option_size": "Small",
+      "option_material": "Natural",
+      "price": 14.0,
+      "weight_g": null,
+      "inventory_on_hand": 40,
+      "shopify_variant_gid": null
+    },
+    {
+      "sku": "DW-PD-BBL",
+      "title": "Large / Dark Burn",
+      "option_size": "Large",
+      "option_material": "Dark Burn",
+      "price": 18.0,
+      "weight_g": null,
+      "inventory_on_hand": 30,
+      "shopify_variant_gid": null
+    }
+  ],
+  "media": {
+    "hero_image": null,
+    "gallery": [],
+    "alt_text": null,
+    "burn_video": null,
+    "source_doodle": null,
+    "photography_status": "none"
+  },
+  "surfaces": {
+    "shop": {
+      "listed": true,
+      "url": "https://000yqx-de.myshopify.com/products/banana-bandit-pendant",
+      "shopify_product_gid": "gid://shopify/Product/9233293377699",
+      "shopify_collection_gid": "gid://shopify/Collection/337792401571"
+    },
+    "brand": {
+      "featured": false,
+      "url": null,
+      "lovable_component": null,
+      "deep_link_to_shop": null
+    },
+    "booth": {
+      "carried": null,
+      "display_tier": null,
+      "qr_target": null
+    },
+    "wholesale": {
+      "offered": null,
+      "line_sheet_ref": null
+    },
+    "etsy": {
+      "listed": false,
+      "listing_id": null,
+      "url": null
+    }
+  },
+  "channels": {
+    "utm_default": "?utm_source=brand&utm_medium=referral&utm_campaign=doodle-wood",
+    "short_link": null,
+    "affiliate_links": [],
+    "social_posts": []
+  },
+  "seo": {
+    "meta_title": null,
+    "meta_description": null,
+    "keywords": [],
+    "canonical_url": null
+  },
+  "sources": {
+    "notion_page": null,
+    "concept_register_ref": "Banana Bandit",
+    "design_files": [],
+    "cost_model_ref": null,
+    "internal_docs": []
+  },
+  "lifecycle": {
+    "created_at": "2026-08-27",
+    "updated_at": "2026-08-28",
+    "last_verified_against_shopify": "2026-08-28",
+    "confidence": "confirmed",
+    "retired_reason": null
+  },
+  "_gaps": [
+    "commerce.booth_price",
+    "commerce.wholesale_moq",
+    "commerce.wholesale_price",
+    "media.alt_text",
+    "media.hero_image",
+    "media.source_doodle",
+    "narrative.description_long",
+    "narrative.description_short",
+    "narrative.one_liner",
+    "narrative.origin_story",
+    "physical.safety_notes",
+    "physical.weight_g",
+    "production.burn_minutes",
+    "production.cogs",
+    "seo.meta_title",
+    "sources.notion_page",
+    "surfaces.brand.deep_link_to_shop"
+  ]
+}

@@ -6,8 +6,10 @@ One record per product. Version-controlled. Feeds every surface.
 schema/
 ├── product.schema.json     # the schema (JSON Schema draft 2020-12)
 ├── validate.py             # validates records + reports per-surface readiness
-└── examples/
-    └── campfire-monkey-wood-slice.json   # worked example against a real product
+└── seed_from_catalog.py    # generates records from the catalog snapshot
+
+catalog/products/           # the records themselves — one file per product
+└── dw-*.json               # all 8 live products, seeded and validating
 ```
 
 Run it:
@@ -16,6 +18,13 @@ Run it:
 pip install jsonschema
 ./validate.py
 ```
+
+All 8 live products already have records. `dw-campfire-monkey-wood-slice.json` is the
+most fully filled and is the one to copy when hand-writing detail.
+
+`seed_from_catalog.py` regenerates records from `../catalog/products.json`. It skips
+files that already exist so hand-written detail is never clobbered — pass `--force`
+only when you intend to overwrite.
 
 ## The two surfaces, and which owns what
 
@@ -84,7 +93,7 @@ so migrating platforms does not orphan the data.
 
 ## Adding a product
 
-1. Copy `examples/campfire-monkey-wood-slice.json` to `../catalog/products/<id>.json`.
+1. Copy `../catalog/products/dw-campfire-monkey-wood-slice.json` to `../catalog/products/<id>.json`.
 2. Fill what you know. Leave the rest `null`.
 3. List what you left out in `_gaps`.
 4. `./validate.py` — fix schema errors, ignore readiness warnings until you intend to launch it.
