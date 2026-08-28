@@ -7,7 +7,7 @@ Everything below was read from the Shopify Admin API, not assumed.
 
 | Field | Value | OK? |
 |---|---|---|
-| Shop name | `My Store 4` | **NO — still the Shopify default** |
+| Shop name | `My Store 4` | **NO — Admin-UI-only, not settable via API** |
 | myshopify domain | `000yqx-de.myshopify.com` | working |
 | Target domain | `shop.doodle-wood.com` | **NOT CONNECTED** |
 | Plan | Basic | ok |
@@ -43,9 +43,14 @@ Ranked. The first two are launch-blocking.
 4. **Storefront is public with no password.** Combined with (1) and (3), anyone who
    finds `000yqx-de.myshopify.com` right now sees an unbranded store with imageless
    products. Either add a password until launch, or fix 1–3 quickly.
-5. No policies (refund/privacy/ToS), no shipping rates configured, no payment provider
-   verified. These block real checkout.
-6. Notion `40 · Storefront` plans commerce on `doodle-wood.shop`; the request here is
+5. **Policies are written but not published.** Drafts live in `policies/` and must be
+   pasted into Settings → Policies by hand — the Shopify connection lacks the
+   `write_legal_policies` scope. They contain deliberate placeholders (contact email,
+   business address) that are customer-facing and must be filled first. The workshop
+   liability and privacy sections need a lawyer before taking money.
+6. No shipping rates configured and no payment provider verified. These block real
+   checkout independently of everything above.
+7. Notion `40 · Storefront` plans commerce on `doodle-wood.shop`; the request here is
    `shop.doodle-wood.com`. Reconciled in favour of the subdomain — consistent with the
    same doc's own recommendation to build on subdomains. Noted so it isn't re-litigated.
 

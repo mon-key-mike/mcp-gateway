@@ -1,0 +1,345 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://doodle-wood.com/schema/product.schema.json",
+  "title": "Doodle Wood Product Record",
+  "description": "Canonical product record for Doodle Wood. ONE record per product, version-controlled, feeding every downstream surface. Deliberately sparse-tolerant: only identity fields are required, everything else may be null or absent. A blank field means 'not captured yet', never 'does not apply' — use the explicit null and the `_gaps` array to say which.",
+
+  "x-surfaces": {
+    "shop": "shop.doodle-wood.com — Shopify operator store. The live commerce + fulfilment surface. Authoritative for price, inventory, order state.",
+    "brand": "doodle-wood.com — brand/story site built and managed in Lovable via Claude Desktop cowork code. Reads narrative and media; does NOT own commerce.",
+    "notion": "Doodle Wood Company Library. Authoritative for brand voice, positioning, pricing policy, concept register.",
+    "booth": "Festival booth / in-person POS and printed signage.",
+    "wholesale": "B2B line sheets and QR plaque quoting.",
+    "social": "Instagram / TikTok / Facebook content pipeline.",
+    "affiliate": "Partner, referral and affiliate link surfaces."
+  },
+
+  "type": "object",
+  "required": ["id", "sku", "title", "status"],
+  "additionalProperties": false,
+
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^dw-[a-z0-9-]+$",
+      "description": "Stable internal ID. Never changes, never reused, survives renames and platform migrations. This is the join key across every system.",
+      "examples": ["dw-campfire-monkey-wood-slice"],
+      "x-surface": ["shop", "brand", "notion", "booth", "wholesale", "affiliate"]
+    },
+    "sku": {
+      "type": "string",
+      "description": "Base SKU. Variant SKUs extend this. Format DW-<TYPE>-<CHAR><SIZE>.",
+      "examples": ["DW-WS-CM"],
+      "x-surface": ["shop", "booth", "wholesale"]
+    },
+    "title": {
+      "type": "string",
+      "description": "Customer-facing product name.",
+      "x-surface": ["shop", "brand", "booth", "social"]
+    },
+    "handle": {
+      "type": ["string", "null"],
+      "description": "URL slug. Must match the Shopify handle exactly or deep links between brand site and shop break.",
+      "x-surface": ["shop", "brand", "affiliate"]
+    },
+    "status": {
+      "enum": ["concept", "prototype", "active", "made-to-order", "seasonal", "sold-out", "retired", "draft"],
+      "description": "Lifecycle state. 'concept' means it exists only as a doodle in the register; 'active' means sellable now.",
+      "x-surface": ["shop", "brand", "notion", "booth"]
+    },
+    "version": {
+      "type": ["string", "null"],
+      "description": "Bump when the physical design changes enough that old photos are wrong.",
+      "examples": ["v1.0"]
+    },
+
+    "classification": {
+      "type": "object",
+      "description": "How the piece is grouped and found.",
+      "additionalProperties": false,
+      "properties": {
+        "product_type": { "type": ["string", "null"], "examples": ["Wood Slice", "Pendant", "Sign", "Sticker", "Patch", "Mug"], "x-surface": ["shop"] },
+        "collection": { "type": ["string", "null"], "description": "Primary Shopify collection handle.", "x-surface": ["shop", "brand"] },
+        "secondary_collections": { "type": "array", "items": { "type": "string" }, "default": [] },
+        "tags": { "type": "array", "items": { "type": "string" }, "default": [], "x-surface": ["shop", "social"] },
+        "character": { "type": ["string", "null"], "description": "Which recurring Doodle Wood character this is. Links to the Doodle Concept Register in Notion.", "examples": ["Campfire Monkey", "Banana Bandit", "Trail Monkey", "Happy Stump", "Mushroom Buddy", "Cosmic Acorn", "Moon Hiker"], "x-surface": ["brand", "notion", "social"] },
+        "motif": { "type": "array", "items": { "enum": ["monkey", "mushroom", "sacred-geometry", "adventure", "camp", "celestial", "flora", "other"] }, "default": [] },
+        "gift_occasion": { "type": "array", "items": { "type": "string" }, "default": [], "description": "Drives seasonal merchandising and ad targeting.", "x-surface": ["shop", "social"] }
+      }
+    },
+
+    "narrative": {
+      "type": "object",
+      "description": "The story layer. This is what makes it Doodle Wood rather than laser-cut stock. Owned by Notion, mirrored here.",
+      "additionalProperties": false,
+      "properties": {
+        "one_liner": { "type": ["string", "null"], "maxLength": 160, "x-surface": ["shop", "brand", "booth", "social"] },
+        "description_short": { "type": ["string", "null"], "description": "Product-card copy, ~40 words.", "x-surface": ["shop"] },
+        "description_long": { "type": ["string", "null"], "description": "Full product-page copy.", "x-surface": ["shop", "brand"] },
+        "origin_story": { "type": ["string", "null"], "description": "Where this doodle actually came from. The brand's core promise is that these escaped a real notebook — if that is unknown for a piece, leave null rather than inventing one.", "x-surface": ["brand", "social"] },
+        "grain_note": { "type": ["string", "null"], "description": "How the wood talked back on this design — knots as eyes, grain as rivers.", "x-surface": ["brand", "booth"] },
+        "voice_warnings": { "type": "array", "items": { "type": "string" }, "default": [], "description": "Words or claims never to use for this piece (e.g. 'do not call it rustic', 'never say food-safe')." }
+      }
+    },
+
+    "physical": {
+      "type": "object",
+      "description": "The object itself. Feeds shipping rates, care instructions and booth signage.",
+      "additionalProperties": false,
+      "properties": {
+        "wood_species": { "type": ["string", "null"], "examples": ["Basswood", "Pine"], "x-surface": ["shop", "booth"] },
+        "dimensions_mm": {
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "properties": {
+            "width": { "type": ["number", "null"] },
+            "height": { "type": ["number", "null"] },
+            "depth": { "type": ["number", "null"] }
+          }
+        },
+        "weight_g": { "type": ["number", "null"], "description": "REQUIRED for accurate shipping rates. Signs are heavier than they look.", "x-surface": ["shop"] },
+        "finish": { "type": ["string", "null"], "examples": ["raw", "beeswax", "matte poly"] },
+        "burn_depth": { "type": ["string", "null"], "enum": ["light", "medium", "dark", null] },
+        "hardware": { "type": ["string", "null"], "examples": ["waxed cotton cord", "iron-on backing", "sawtooth hanger"] },
+        "one_of_one": { "type": ["boolean", "null"], "description": "True if literally unique. Changes refund copy and inventory handling.", "x-surface": ["shop", "brand"] },
+        "care_instructions": { "type": ["string", "null"], "x-surface": ["shop"] },
+        "safety_notes": { "type": ["string", "null"], "description": "Not food-safe / not fire-resistant / small parts. Legally load-bearing — see terms-of-service.html.", "x-surface": ["shop", "booth"] }
+      }
+    },
+
+    "production": {
+      "type": "object",
+      "description": "Internal only. Never rendered on a customer surface.",
+      "additionalProperties": false,
+      "properties": {
+        "make_mode": { "type": ["string", "null"], "enum": ["stock", "made-to-order", "commission", "live-burn", null] },
+        "burn_minutes": { "type": ["number", "null"], "description": "Bench time per piece. The real constraint on this business." },
+        "blank_source": { "type": ["string", "null"], "description": "Where the wood blank comes from." },
+        "blank_cost": { "type": ["number", "null"] },
+        "consumables_cost": { "type": ["number", "null"] },
+        "cogs": { "type": ["number", "null"], "description": "Total cost of goods. Drives the margin check in validate.py." },
+        "batch_size": { "type": ["integer", "null"] },
+        "tooling": { "type": "array", "items": { "type": "string" }, "default": [] },
+        "difficulty": { "type": ["integer", "null"], "minimum": 1, "maximum": 5, "description": "1 = anyone can burn it, 5 = only Mike." },
+        "workshop_suitable": { "type": ["boolean", "null"], "description": "Can this be a $30 'Burn Your Own' seat? Notion records workshop seats as the highest-throughput item, so this flag is commercially significant." }
+      }
+    },
+
+    "commerce": {
+      "type": "object",
+      "description": "Money. Shopify is authoritative once live; this is the intended state.",
+      "additionalProperties": false,
+      "properties": {
+        "currency": { "type": "string", "default": "USD" },
+        "price": { "type": ["number", "null"], "x-surface": ["shop", "booth", "wholesale"] },
+        "compare_at_price": { "type": ["number", "null"] },
+        "booth_price": { "type": ["number", "null"], "description": "Cash price at a festival booth. Often differs from online — record it rather than letting it live only in someone's head.", "x-surface": ["booth"] },
+        "wholesale_price": { "type": ["number", "null"], "x-surface": ["wholesale"] },
+        "wholesale_moq": { "type": ["integer", "null"] },
+        "margin_pct": { "type": ["number", "null"], "description": "Derived from price and cogs. Recomputed by validate.py, not hand-entered." },
+        "tax_code": { "type": ["string", "null"] },
+        "inventory_tracked": { "type": ["boolean", "null"] },
+        "inventory_on_hand": { "type": ["integer", "null"], "description": "Snapshot only. Shopify is the live source." }
+      }
+    },
+
+    "variants": {
+      "type": "array",
+      "description": "Empty array is valid for single-variant products.",
+      "default": [],
+      "items": {
+        "type": "object",
+        "required": ["sku"],
+        "additionalProperties": false,
+        "properties": {
+          "sku": { "type": "string" },
+          "title": { "type": ["string", "null"] },
+          "option_size": { "type": ["string", "null"] },
+          "option_material": { "type": ["string", "null"] },
+          "price": { "type": ["number", "null"] },
+          "weight_g": { "type": ["number", "null"] },
+          "inventory_on_hand": { "type": ["integer", "null"] },
+          "shopify_variant_gid": { "type": ["string", "null"] }
+        }
+      }
+    },
+
+    "media": {
+      "type": "object",
+      "description": "CURRENT BLOCKER: every product in the live store has zero images. This block exists to make that gap explicit and trackable rather than invisible.",
+      "additionalProperties": false,
+      "properties": {
+        "hero_image": { "type": ["string", "null"], "format": "uri", "x-surface": ["shop", "brand", "social"] },
+        "gallery": { "type": "array", "items": { "type": "string", "format": "uri" }, "default": [] },
+        "alt_text": { "type": ["string", "null"], "description": "Accessibility requirement, not optional at launch.", "x-surface": ["shop", "brand"] },
+        "burn_video": { "type": ["string", "null"], "format": "uri", "description": "Ties to the 'Watch a Piece Get Burned' homepage CTA.", "x-surface": ["brand", "social"] },
+        "source_doodle": { "type": ["string", "null"], "format": "uri", "description": "Scan of the original sketchbook page. The provenance asset.", "x-surface": ["brand", "notion"] },
+        "photography_status": {
+          "enum": ["none", "scheduled", "shot", "edited", "published"],
+          "default": "none",
+          "description": "Launch gate. Anything not 'published' blocks that product going live.",
+          "x-surface": ["notion"]
+        }
+      }
+    },
+
+    "surfaces": {
+      "type": "object",
+      "description": "WHERE THIS PRODUCT LIVES. Each surface is independently toggleable — a piece can be boothed before it is ever listed online.",
+      "additionalProperties": false,
+      "properties": {
+        "shop": {
+          "type": "object",
+          "description": "shop.doodle-wood.com — Shopify operator store.",
+          "additionalProperties": false,
+          "properties": {
+            "listed": { "type": ["boolean", "null"] },
+            "url": { "type": ["string", "null"], "format": "uri" },
+            "shopify_product_gid": { "type": ["string", "null"] },
+            "shopify_collection_gid": { "type": ["string", "null"] }
+          }
+        },
+        "brand": {
+          "type": "object",
+          "description": "doodle-wood.com — Lovable-built brand site. Story surface only; it has no cart by design. Any 'buy' affordance here must deep-link to the shop.",
+          "additionalProperties": false,
+          "properties": {
+            "featured": { "type": ["boolean", "null"] },
+            "url": { "type": ["string", "null"], "format": "uri" },
+            "lovable_component": { "type": ["string", "null"], "description": "Component or route in the Lovable project that renders this." },
+            "deep_link_to_shop": { "type": ["string", "null"], "format": "uri", "description": "Where the brand site sends a buyer. Must carry UTM params — see channels.utm_default." }
+          }
+        },
+        "booth": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "carried": { "type": ["boolean", "null"] },
+            "display_tier": { "type": ["string", "null"], "enum": ["hero", "mid", "impulse", null], "description": "Impulse items go at the register; heroes go at eye level." },
+            "qr_target": { "type": ["string", "null"], "format": "uri", "description": "QR code on booth signage. Notion records QR plaques as the highest-value repeat B2B item." }
+          }
+        },
+        "wholesale": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "offered": { "type": ["boolean", "null"] },
+            "line_sheet_ref": { "type": ["string", "null"] }
+          }
+        },
+        "etsy": {
+          "type": "object",
+          "description": "External marketplace, if used.",
+          "additionalProperties": false,
+          "properties": {
+            "listed": { "type": ["boolean", "null"] },
+            "listing_id": { "type": ["string", "null"] },
+            "url": { "type": ["string", "null"], "format": "uri" }
+          }
+        }
+      }
+    },
+
+    "channels": {
+      "type": "object",
+      "description": "Affiliate, referral and attribution. Kept separate from `surfaces` because a link can exist without the product being listed on that surface.",
+      "additionalProperties": false,
+      "properties": {
+        "utm_default": { "type": ["string", "null"], "description": "Default UTM query string appended to inbound links.", "examples": ["?utm_source=brand&utm_medium=referral&utm_campaign=doodle-wood"] },
+        "short_link": { "type": ["string", "null"], "format": "uri", "description": "Canonical short link used in bios and on printed material." },
+        "affiliate_links": {
+          "type": "array",
+          "default": [],
+          "description": "Outbound affiliate/partner links FOR this product. Empty is fine and expected early.",
+          "items": {
+            "type": "object",
+            "required": ["partner"],
+            "additionalProperties": false,
+            "properties": {
+              "partner": { "type": "string" },
+              "url": { "type": ["string", "null"], "format": "uri" },
+              "code": { "type": ["string", "null"], "description": "Discount or referral code." },
+              "commission_pct": { "type": ["number", "null"] },
+              "commission_flat": { "type": ["number", "null"] },
+              "active": { "type": ["boolean", "null"] },
+              "notes": { "type": ["string", "null"] }
+            }
+          }
+        },
+        "social_posts": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "platform": { "enum": ["instagram", "tiktok", "facebook", "other"] },
+              "url": { "type": ["string", "null"], "format": "uri" },
+              "posted_at": { "type": ["string", "null"], "format": "date" },
+              "ugc": { "type": ["boolean", "null"], "description": "True if made by a customer, not us. Notion's marketing doctrine targets ~42 UGC pieces per event." }
+            }
+          }
+        }
+      }
+    },
+
+    "seo": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "meta_title": { "type": ["string", "null"], "maxLength": 70, "x-surface": ["shop", "brand"] },
+        "meta_description": { "type": ["string", "null"], "maxLength": 160, "x-surface": ["shop", "brand"] },
+        "keywords": { "type": "array", "items": { "type": "string" }, "default": [] },
+        "canonical_url": { "type": ["string", "null"], "format": "uri", "description": "Critical: brand site and shop must not compete for the same term. Point the canonical at the shop for anything transactional." }
+      }
+    },
+
+    "sources": {
+      "type": "object",
+      "description": "Provenance. Every claim in this record should be traceable to one of these. This is what makes the record auditable rather than folklore.",
+      "additionalProperties": false,
+      "properties": {
+        "notion_page": { "type": ["string", "null"], "format": "uri" },
+        "concept_register_ref": { "type": ["string", "null"], "description": "Entry in the Doodle Concept Register." },
+        "design_files": { "type": "array", "items": { "type": "string" }, "default": [], "description": "Canva / Figma / raw scan references." },
+        "cost_model_ref": { "type": ["string", "null"] },
+        "internal_docs": {
+          "type": "array",
+          "default": [],
+          "description": "Any other internal document feeding this record.",
+          "items": {
+            "type": "object",
+            "required": ["title"],
+            "additionalProperties": false,
+            "properties": {
+              "title": { "type": "string" },
+              "url": { "type": ["string", "null"], "format": "uri" },
+              "kind": { "type": ["string", "null"], "enum": ["spec", "cost-model", "photo-brief", "legal", "supplier", "research", "other", null] },
+              "owner": { "type": ["string", "null"] }
+            }
+          }
+        }
+      }
+    },
+
+    "lifecycle": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "created_at": { "type": ["string", "null"], "format": "date" },
+        "updated_at": { "type": ["string", "null"], "format": "date" },
+        "last_verified_against_shopify": { "type": ["string", "null"], "format": "date", "description": "When this record was last checked against live Shopify. Stale records are how the plan drifts from reality." },
+        "confidence": { "enum": ["confirmed", "probable", "assumed", "unknown"], "default": "unknown", "description": "Mirrors the Notion Ventures convention. 'assumed' means nobody has checked." },
+        "retired_reason": { "type": ["string", "null"] }
+      }
+    },
+
+    "_gaps": {
+      "type": "array",
+      "default": [],
+      "description": "Explicit, machine-readable list of what is knowingly missing from this record. A field being null is ambiguous; naming it here is not. validate.py reports on these instead of silently passing sparse records.",
+      "items": { "type": "string" },
+      "examples": [["media.hero_image", "physical.weight_g", "production.cogs"]]
+    }
+  }
+}
