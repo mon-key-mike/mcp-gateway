@@ -1,0 +1,158 @@
+{
+  "id": "dw-commission-deposit",
+  "sku": "DW-CM-DEP",
+  "title": "Commission a Piece \u2014 Deposit",
+  "handle": "commission-a-piece-deposit",
+  "status": "draft",
+  "version": "v1.0",
+  "classification": {
+    "product_type": "Commission",
+    "collection": null,
+    "secondary_collections": [],
+    "tags": [
+      "commission",
+      "custom",
+      "doodle-wood",
+      "made-to-order"
+    ],
+    "character": null,
+    "motif": [],
+    "gift_occasion": []
+  },
+  "narrative": {
+    "one_liner": "Tell me what you want burned. The deposit books bench time and buys the driftwood.",
+    "description_short": "Deposit-gated commission. Proof approved before anything is burned; the deposit comes off the final price.",
+    "description_long": null,
+    "origin_story": null,
+    "grain_note": "Often the knot or the spalt line decides the composition, and the burning is answering it.",
+    "voice_warnings": [
+      "never say 'handcrafted'",
+      "do not promise skill outcomes"
+    ]
+  },
+  "physical": {
+    "wood_species": "Lake Erie driftwood",
+    "dimensions_mm": null,
+    "weight_g": null,
+    "finish": null,
+    "burn_depth": null,
+    "hardware": null,
+    "one_of_one": true,
+    "care_instructions": null,
+    "safety_notes": null
+  },
+  "production": {
+    "make_mode": "commission",
+    "burn_minutes": null,
+    "blank_source": "Lake Erie shoreline foraging",
+    "blank_cost": null,
+    "consumables_cost": null,
+    "cogs": null,
+    "batch_size": null,
+    "tooling": [],
+    "difficulty": null,
+    "workshop_suitable": false
+  },
+  "commerce": {
+    "currency": "USD",
+    "price": 50.0,
+    "compare_at_price": null,
+    "booth_price": null,
+    "wholesale_price": null,
+    "wholesale_moq": null,
+    "margin_pct": null,
+    "tax_code": null,
+    "inventory_tracked": false,
+    "inventory_on_hand": null
+  },
+  "variants": [
+    {
+      "sku": "DW-CM-DEP",
+      "title": "Default Title",
+      "option_size": null,
+      "option_material": null,
+      "price": 50.0,
+      "weight_g": null,
+      "inventory_on_hand": null,
+      "shopify_variant_gid": "gid://shopify/ProductVariant/48104256307363"
+    }
+  ],
+  "media": {
+    "hero_image": null,
+    "gallery": [],
+    "alt_text": null,
+    "burn_video": null,
+    "source_doodle": null,
+    "photography_status": "none"
+  },
+  "surfaces": {
+    "shop": {
+      "listed": false,
+      "url": null,
+      "shopify_product_gid": "gid://shopify/Product/9249219739811",
+      "shopify_collection_gid": null
+    },
+    "brand": {
+      "featured": false,
+      "url": null,
+      "lovable_component": null,
+      "deep_link_to_shop": null
+    },
+    "booth": {
+      "carried": true,
+      "display_tier": "hero",
+      "qr_target": null
+    },
+    "wholesale": {
+      "offered": false,
+      "line_sheet_ref": null
+    },
+    "etsy": {
+      "listed": false,
+      "listing_id": null,
+      "url": null
+    }
+  },
+  "channels": {
+    "utm_default": "?utm_source=booth&utm_medium=qr&utm_campaign=commission",
+    "short_link": null,
+    "affiliate_links": [],
+    "social_posts": []
+  },
+  "seo": {
+    "meta_title": null,
+    "meta_description": null,
+    "keywords": [],
+    "canonical_url": null
+  },
+  "sources": {
+    "notion_page": null,
+    "concept_register_ref": null,
+    "design_files": [],
+    "cost_model_ref": null,
+    "internal_docs": [
+      {
+        "title": "Notion: Doodle Wood venture - Revenue Path",
+        "url": null,
+        "kind": "research",
+        "owner": null
+      }
+    ]
+  },
+  "lifecycle": {
+    "created_at": "2026-09-08",
+    "updated_at": "2026-09-08",
+    "last_verified_against_shopify": "2026-09-08",
+    "confidence": "probable",
+    "retired_reason": null
+  },
+  "_gaps": [
+    "BLOCKER: $50 deposit is a PLACEHOLDER - Notion never states the amount",
+    "commerce.booth_price",
+    "media.hero_image",
+    "narrative.description_long",
+    "production.cogs",
+    "seo.meta_title",
+    "surfaces.booth.qr_target"
+  ]
+}

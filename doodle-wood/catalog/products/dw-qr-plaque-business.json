@@ -1,0 +1,160 @@
+{
+  "id": "dw-qr-plaque-business",
+  "sku": "DW-QR-B2B",
+  "title": "QR Plaque \u2014 Business",
+  "handle": "qr-plaque-business",
+  "status": "draft",
+  "version": "v1.0",
+  "classification": {
+    "product_type": "Sign",
+    "collection": null,
+    "secondary_collections": [],
+    "tags": [
+      "b2b",
+      "doodle-wood",
+      "made-to-order",
+      "qr-plaque",
+      "wholesale"
+    ],
+    "character": null,
+    "motif": [],
+    "gift_occasion": []
+  },
+  "narrative": {
+    "one_liner": "A burned driftwood plaque with your QR code in it.",
+    "description_short": "The code is burned into the wood, not printed on a sticker. Survives a wipe-down and a patio in July.",
+    "description_long": null,
+    "origin_story": null,
+    "grain_note": "Lake Erie driftwood, so every plaque in a set of six is a different shape.",
+    "voice_warnings": [
+      "never say 'handcrafted'",
+      "do not promise skill outcomes"
+    ]
+  },
+  "physical": {
+    "wood_species": "Lake Erie driftwood",
+    "dimensions_mm": null,
+    "weight_g": null,
+    "finish": "beeswax from our own hives",
+    "burn_depth": null,
+    "hardware": null,
+    "one_of_one": true,
+    "care_instructions": null,
+    "safety_notes": null
+  },
+  "production": {
+    "make_mode": "made-to-order",
+    "burn_minutes": null,
+    "blank_source": "Lake Erie shoreline foraging",
+    "blank_cost": null,
+    "consumables_cost": null,
+    "cogs": null,
+    "batch_size": null,
+    "tooling": [],
+    "difficulty": null,
+    "workshop_suitable": false
+  },
+  "commerce": {
+    "currency": "USD",
+    "price": 72.0,
+    "compare_at_price": null,
+    "booth_price": null,
+    "wholesale_price": null,
+    "wholesale_moq": null,
+    "margin_pct": null,
+    "tax_code": null,
+    "inventory_tracked": false,
+    "inventory_on_hand": null
+  },
+  "variants": [
+    {
+      "sku": "DW-QR-B2B",
+      "title": "Default Title",
+      "option_size": null,
+      "option_material": null,
+      "price": 72.0,
+      "weight_g": null,
+      "inventory_on_hand": null,
+      "shopify_variant_gid": "gid://shopify/ProductVariant/48104256635043"
+    }
+  ],
+  "media": {
+    "hero_image": null,
+    "gallery": [],
+    "alt_text": null,
+    "burn_video": null,
+    "source_doodle": null,
+    "photography_status": "none"
+  },
+  "surfaces": {
+    "shop": {
+      "listed": false,
+      "url": null,
+      "shopify_product_gid": "gid://shopify/Product/9249219903651",
+      "shopify_collection_gid": null
+    },
+    "brand": {
+      "featured": false,
+      "url": null,
+      "lovable_component": null,
+      "deep_link_to_shop": null
+    },
+    "booth": {
+      "carried": false,
+      "display_tier": null,
+      "qr_target": null
+    },
+    "wholesale": {
+      "offered": true,
+      "line_sheet_ref": null
+    },
+    "etsy": {
+      "listed": false,
+      "listing_id": null,
+      "url": null
+    }
+  },
+  "channels": {
+    "utm_default": "?utm_source=b2b&utm_medium=referral&utm_campaign=qr-plaque",
+    "short_link": null,
+    "affiliate_links": [],
+    "social_posts": []
+  },
+  "seo": {
+    "meta_title": null,
+    "meta_description": null,
+    "keywords": [],
+    "canonical_url": null
+  },
+  "sources": {
+    "notion_page": null,
+    "concept_register_ref": null,
+    "design_files": [],
+    "cost_model_ref": null,
+    "internal_docs": [
+      {
+        "title": "Notion: Doodle Wood venture - Revenue Path",
+        "url": null,
+        "kind": "research",
+        "owner": null
+      }
+    ]
+  },
+  "lifecycle": {
+    "created_at": "2026-09-08",
+    "updated_at": "2026-09-08",
+    "last_verified_against_shopify": "2026-09-08",
+    "confidence": "probable",
+    "retired_reason": null
+  },
+  "_gaps": [
+    "BLOCKER: B2B orders are quoted per batch - intake step must exist before publishing",
+    "commerce.wholesale_price",
+    "commerce.wholesale_moq",
+    "media.hero_image",
+    "narrative.description_long",
+    "physical.weight_g",
+    "production.cogs",
+    "seo.meta_title"
+  ]
+}

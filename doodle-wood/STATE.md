@@ -1,24 +1,31 @@
 # Doodle Wood store — state of record
 
-**Last verified against the live store: 2026-08-28**
+**Last verified against the live store: 2026-09-08**
 Everything below was read from the Shopify Admin API, not assumed.
 
 ## Store identity
 
 | Field | Value | OK? |
 |---|---|---|
-| Shop name | `My Store 4` | **NO — Admin-UI-only, not settable via API** |
+| Shop name | `Doodle-Wood` | ok — but brand docs write it **Doodle Wood**, no hyphen |
 | myshopify domain | `000yqx-de.myshopify.com` | working |
-| Target domain | `shop.doodle-wood.com` | **NOT CONNECTED** |
+| **Primary domain** | **`shop.doodle-wood.com`, SSL enabled** | **done** |
 | Plan | Basic | ok |
 | Currency | USD | ok |
-| Contact email | `junkmonkeystore@gmail.com` | not a doodle-wood.com address |
-| Password protection | **disabled — storefront is publicly reachable** | see risk below |
-| Live theme | Horizon | ok (Crave, Tinker unpublished) |
+| Contact email | `metamonkeymike@gmail.com` | real, but not a doodle-wood.com address |
+| Billing address | North Ridgeville, US | set |
+| Ships to | US only | ok |
+| Password protection | **disabled — store is public on the brand domain** | see blocker 2 |
+| Live theme | Horizon | ok |
 
-## Catalog — built and live
+Fixed since 2026-08-28: custom domain connected, store renamed off the Shopify
+default, contact email and billing address set.
 
-8 products, all moved DRAFT → ACTIVE on 2026-08-28. 4 collections created.
+## Catalog
+
+**11 products, 4 collections.**
+
+8 physical products, all ACTIVE, all with **zero images**:
 
 | Collection | Products | Price range |
 |---|---|---|
@@ -27,51 +34,73 @@ Everything below was read from the Shopify Admin API, not assumed.
 | Signs & Wall Art | 1 | $45 |
 | Stickers & Camp Goods | 3 | $4–22 |
 
-Full detail: `catalog/products.json`, `catalog/collections.json`.
+3 revenue-line products added 2026-09-08, all **DRAFT** (see "Why drafts" below):
 
-## Blockers before this store can launch
+| Product | SKU | Price | Notion's description |
+|---|---|---|---|
+| Burn Your Own — Workshop Seat | `DW-WS-SEAT` | $49 | "the highest-throughput item" |
+| Commission a Piece — Deposit | `DW-CM-DEP` | $50 *(placeholder)* | deposit-gated pipeline |
+| QR Plaque — Business | `DW-QR-B2B` | $72 | "the highest-value repeat B2B item" |
 
-Ranked. The first two are launch-blocking.
+**0 orders. 0 customers.** Ever.
 
-1. **Every product has zero images** (`mediaCount: 0` on all 8). A pyrography brand
-   whose entire value proposition is *how the burned piece looks* cannot sell without
-   photography. This is the single biggest gap.
-2. **`shop.doodle-wood.com` is not connected.** Requires a DNS change at Hostinger and
-   a manual step in Shopify Admin — neither is automatable. See `docs/DOMAIN-SETUP.md`.
-3. **Store is named "My Store 4"** and shows that name in the browser tab, checkout,
-   and every transactional email. Change in Settings → Store details.
-4. **Storefront is public with no password.** Combined with (1) and (3), anyone who
-   finds `000yqx-de.myshopify.com` right now sees an unbranded store with imageless
-   products. Either add a password until launch, or fix 1–3 quickly.
-5. **Policies are written but not published.** Drafts live in `policies/` and must be
-   pasted into Settings → Policies by hand — the Shopify connection lacks the
-   `write_legal_policies` scope. They contain deliberate placeholders (contact email,
-   business address) that are customer-facing and must be filled first. The workshop
-   liability and privacy sections need a lawyer before taking money.
-6. **Shipping rates ARE configured** (corrected 2026-08-28 — an earlier note here
-   wrongly said they were not). Flat rates on a Domestic zone: Economy $6.69 (free
-   ≥ $39), Standard $8.00 (free ≥ $70), Express $15.00. These are Shopify defaults
-   and the free-shipping thresholds are mispriced against this catalog — see
-   `docs/FUNNEL.md`.
-7. **Payment provider not confirmed.** `supportedDigitalWallets` is empty, which on a
-   US store strongly suggests no provider is activated. Not confirmable via API —
-   check Settings → Payments. Until this is live, every other funnel fix converts
-   to $0.
-8. **The three highest-value revenue lines have no product in the store.** Notion
-   records $30 workshop seats as the highest-throughput item, deposit-gated
-   commissions, and B2B QR plaques from $72 as the highest-value repeat item.
-   None exists as a purchasable product. See `docs/FUNNEL.md`.
-7. Notion `40 · Storefront` plans commerce on `doodle-wood.shop`; the request here is
-   `shop.doodle-wood.com`. Reconciled in favour of the subdomain — consistent with the
-   same doc's own recommendation to build on subdomains. Noted so it isn't re-litigated.
+## Blockers, ranked
+
+1. **Every physical product has zero images.** Unchanged since 2026-08-27. For a brand
+   whose proposition is *how the burned piece looks*, this is the conversion mechanism,
+   not decoration. Single biggest blocker.
+2. **The store is public on `shop.doodle-wood.com` with no images and no password.**
+   Connecting the domain did not cause this, but it converted the exposure from an
+   obscure myshopify URL nobody had into your real brand domain. Anything linking
+   from `doodle-wood.com`, any QR code, any bio link lands a customer here.
+   Either set a storefront password until photography lands, or ship photos.
+3. **Payment provider not confirmed.** `supportedDigitalWallets` is still empty, which
+   on a US store suggests no provider is activated. Not confirmable via API — check
+   Settings → Payments. 0 orders is consistent with both "no traffic" and "checkout
+   is broken", and those need opposite responses.
+4. **Free-shipping thresholds lose money.** Economy $6.69 free ≥ $39, Standard $8.00
+   free ≥ $70, Express $15.00 — Shopify starter defaults, never set for this catalog.
+   Worked arithmetic in `docs/FUNNEL.md`. Blocked on product weights, which are null
+   across all 8 records (`physical.weight_g`). A scale and ten minutes unblocks it.
+   *Last verified 2026-08-28; not re-checked 2026-09-08.*
+5. **Policies written but publication unconfirmed.** Drafts in `policies/`. This
+   connection cannot read policy state, so I cannot tell whether they were pasted.
+   Two placeholders they were waiting on — contact email and business address — are
+   now filled in the store and can be substituted in.
+
+## Unresolved conflicts
+
+Recorded rather than silently resolved, because each has two credible sources.
+
+1. **Workshop price: $49 or $30?** The `on-brand` skill states $49. Notion and
+   `docs/FUNNEL.md` say $30. Built at **$49** as the newer brand authority.
+   `docs/FUNNEL.md` still says $30 and is wrong until this is settled.
+2. **Wood species: driftwood or basswood/pine?** The `on-brand` skill says Doodle Wood
+   is pyrography on **Lake Erie driftwood**, sealed with beeswax from the family's own
+   hives. The 8 existing product records say **basswood** and **pine**. The three new
+   products are written to the driftwood story. Either the older listings are stale or
+   the brand doc overstates — someone who knows the bench needs to say which.
+3. **Store name hyphenation.** Live store is `Doodle-Wood`; brand docs use
+   `Doodle Wood`. Cosmetic, appears in checkout and transactional email.
+
+## Why the three new products are drafts
+
+Each is missing one fact that would make it dishonest to sell today:
+
+- **Workshop seat** — no session dates exist. Publishing takes money for an
+  unscheduled event.
+- **Commission deposit** — the $50 is a **placeholder**. Notion records the pipeline
+  as deposit-gated but never states the amount. Set the real figure before publishing.
+- **QR plaque** — $72 is the correct floor per Notion, but B2B orders are quoted per
+  batch, so the intake step needs to exist before the buy button does.
+
+All three flip to ACTIVE in one call once those are answered.
 
 ## Relationship to doodle-wood.com
 
-`doodle-wood.com` is live and is a **brand + story + email-capture site with no cart or
-checkout**, by its own build spec. This Shopify store is the commerce surface that site
-never had. Adding `shop.` is additive — do not touch the apex `A` record
-(`185.158.133.1`), which serves the live brand site.
+`doodle-wood.com` is a brand + story + email-capture site with no cart or checkout, by
+its own build spec. This store is the commerce surface it never had. The apex `A`
+record serves the live brand site — do not touch it.
 
 Open item carried from Notion: `auth.users` on the brand site is empty, so no admin
-exists and the captured email list is unreadable. Unrelated to this store, still blocking
-that funnel.
+exists and the captured email list is unreadable in-app.

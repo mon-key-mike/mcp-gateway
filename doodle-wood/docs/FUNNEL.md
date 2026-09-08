@@ -3,6 +3,16 @@
 Verified against the live store 2026-08-28. Every number here was pulled from the
 Shopify Admin API, not assumed.
 
+> **Update 2026-09-08.** The three missing revenue lines below now exist as DRAFT
+> products — see `../STATE.md`. Two corrections to this document:
+>
+> - **The workshop price here ($30) is disputed.** The `on-brand` skill states **$49**.
+>   The product was built at $49. Settle this and update both places.
+> - The domain and store-name blockers in the fix table are **done**.
+>
+> The shipping arithmetic below was last verified 2026-08-28 and has not been
+> re-checked.
+
 ## The headline
 
 **The store cannot sell its three best products, because they do not exist in it.**
